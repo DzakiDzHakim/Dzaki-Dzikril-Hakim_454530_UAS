@@ -1,12 +1,81 @@
 1) Describe your software design in detail
+The software will provide the same features as the previous implementation: FHIR resources,
+profile, and extension browsing, and FHIR profile and extension creation. Therefore, the
+software model will also follow a similar structure. We will implement D3.js to create
+graphical representation of the data, HAPI FHIR to ensure that user-customised profiles and
+extensions satisfy the FHIR specification, and JQuery to support interactive functions.
 
+
+The software implements Visual FHIR, a graphical tool to convey the content of FHIR. Visual
+FHIR allows browsing, profiling, and extension definition to be visualised. The outline of system
+architecture are as follows: FHIR specification, user interaction, and clinical contexts of use. The
+software allows users to perform visualised browsing, profiling, and extension defining.
 
 2) Explain your sourcecode
 
 
 3) Describe your software prototype evaluation
+To visualise the FHIR models, the software considers the following main model components:
+FHIR resources, profiles, and extensions. FHIR resources represent categories in which health
+care data is broken down into, such as person, medication, and insurance plan. FHIR resources
+define data elements, constraints, and relationships that when combined, make up an
+exchangeable patient record. The core FHIR resources satisfy most common use cases.
 
+For browsing FHIR resources, the software first parsed the schemas of the FHIR resources.
+Resources follow the standards JSON, XML, and RDF. The schema in JSON contains two key
+elements, "$ref" and "properties". The method used allows for schema to be parsed automatically
+to obtain the Uniform Resource Identifiers (URIs) by following "$ref". The elements of each
+schema file can then be found by parsing "properties". Next, functions d3.layout.tree and
+d3.svg.diagonal are used to construct the tree graphs for the schemas. JQuery is used to support
+interactive functions – allowing for dynamic interactions with the graph.
 
 4) Write summary of your project, which consist of Introduction, Methods, Results, Discussion, and References
+Introduction:
+The FHIR specification is relatively difficult to understand and utilise due to complex semantic 
+representation and structure definition. "An Interactive Visualization Tool for HL7 FHIR 
+Specification Browsing and Profiling" was developed as a result. However, the current implementation 
+of the product has some limitations; more advancedfeatures, such as profiling and authoring are yet 
+to be implemented completely. In this project, we will attempt to implement more advanced profiling 
+and authoring features (such as concept mapping and profile registering) and improve on the 
+user-friendliness by providing more information to help guide users to better understand FHIR models.
+
+Methods:
+Although we plan to implement more features, our priority is to improve on the user
+orientation aspects, as we believe a software friendly to users is of utmost importance, given
+how complex the FHIR specification already is. We also feel that the basic profiling and
+authoring features in the current implementation are already sufficient for most applications.
+
+Results:
+Users can input a FHIR file. If they choose to browse a FHIR resource, the system parses the
+schema and displays a tree graph representation of the FHIR Profile. If the user chooses to
+browse a FHIR profile or extension, the system parses through Structure Definition and displays
+tree and relational graphs of the profile or extensions.
+
+Discussion:
+Because of complex semantic representation and structure definition, the FHIR specification is
+relatively difficult to understand and utilise. HL7 guides users by providing HTML-based
+browsing methods for FHIR models. However, it is essential for tooling support in model
+browsing and interactive authoring to be developed to help users to better understand and utilise
+the FHIR specification. This study aims to design, implement, and evaluate an interactive
+visualisation tool for the FHIR specification in an integrated platform.
+
+References:
+1. N. Hong, K. Wang, S. Wu, F. Shen, L. Yao, G. Jiang, "An Interactive Visualization Tool for HL7 FHIR
+Specification Browsing and Profiling," J Healthc Inform Res., vol. 3, no. 3, pp. 329-344, Sep.2019.
+Accessed Nov. 08, 2022. doi: 10.1007/s41666-018-0043-8. [Online]. Available:
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6784845.
+
+2. "Introduction to FHIR Resources," healthit.gov.
+https://www.healthit.gov/sites/default/files/page/2021-04/Intro%20to%20FHIR%20Resources%20Fact%20
+Sheet.pdf (accessed Nov. 08, 2022).
+
+3. M. Ruten, "FHIR Profiles and Implementation Guides," fire.ly.
+https://fire.ly/blog/fhir-profiles-and-implementation-guides (accessed Nov. 08, 2022).
+
+4. E. Yesakov, "What are FHIR Profiles," kodijin.com. https://kodjin.com/blog/what-are-fhir-profiles
+(accessed Nov. 08, 2022).
+
+5. "HL7 FHIR Extensions," lyniate.com. https://lyniate.com/resources/hl7-fhir-extensions (accessed Nov. 08,
+2022).
 
 
